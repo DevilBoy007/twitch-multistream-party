@@ -1,5 +1,6 @@
 **PAY ATTENTION TO MEMORY/ENERGY USAGE. APP HAS NOT BEEN OPTIMIZED YET AND IS STILL IN DEVELOPMENT**
 App relies on Node.js v8.4.0
+
 `npm install node`
 ---
 in order to get this to work you must first generate an ssl key/cert for your server.
