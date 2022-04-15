@@ -39,13 +39,16 @@ rm ./ssl/csr.pem
 
 ---
 
-okay now you're ready to start the server
+okay now you're ready to start the server!
 
 ```bash
 node app.js
 ```
+from either directory (/placeholder,/iframe)
 
-you should see the console output that it's `listening on port 3000`. you're all set to go!
+you should see the console output that it's `listening on port 3000` (`3001` if you're using the iframe version) 
+
+**you're all set to go!**
 head over to https://localhost:3000 to see it live :D **it is very important that you
 visit using https protocol for the Twitch module!**
 ---
