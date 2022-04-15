@@ -4,7 +4,17 @@ App relies on Node.js v8.4.0
 
 `npm install node`
 ---
-in order to get this to work you must first generate an ssl key/cert for your server.
+
+- there are two versions of the app that utilize different embedding methods provided by Twitch:
+  1. **placeholder embed**
+    - relies on Twitch api v1.js file to create stream players and inject iframes into placeholder divs
+  2. **iframe embed**
+    - relies on Twitch iframe embed and requires parent site as url param, which we set as `localhost`
+
+- in order to get this to work you must first generate an ssl key/cert for each of your https servers.
+
+`cd` into `iframe` and `placeholder` directories, then follow this process in each of the subdirectories you have just navigated to, then
+
 enter these commands in your terminal and follow the instructions if prompted.
 
 1.
