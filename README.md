@@ -7,18 +7,22 @@ App relies on Node.js v8.4.0
 in order to get this to work you must first generate an ssl key/cert for your server.
 enter these commands in your terminal and follow the instructions if prompted.
 
-1.  ```bash
-  openssl genrsa -out ./ssl/key.pem
-  ```
-2.```bash
-  openssl req -new -key key.pem -out ./ssl/csr.pem
-  ```
-3.```bash
-  openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out ./ssl/cert.pem
-  ```
+1.
+```bash
+openssl genrsa -out ./ssl/key.pem
+```
+
+2.
+```bash
+openssl req -new -key key.pem -out ./ssl/csr.pem
+```
+
+3.
+```bash
+openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out ./ssl/cert.pem
+```
 
 after this you can remove the csr file
-
 ```bash
 rm ./ssl/csr.pem
 ```
