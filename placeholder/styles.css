@@ -1,0 +1,55 @@
+.container
+{
+  display: flex;
+  overflow-x: auto;
+  justify-content: flex-start;
+  padding: 2vw;
+}
+.component-wrapper
+{
+  display: flex;
+  flex-direction: column;
+  padding: 3vw;
+}
+.twitch-wrapper-red
+{
+  border-radius: 12px;
+  box-shadow: -4px 4px 12px;
+  color: #FFF;
+  animation: redPulse 2s infinite;
+}
+.twitch-wrapper-blue
+{
+  border-radius: 12px;
+  box-shadow: -4px 4px 12px;
+  color: #FFF;
+  animation: bluePulse 2s infinite;
+}
+.twitch-wrapper-pink
+{
+  border-radius: 12px;
+  box-shadow: -4px 4px 12px;
+  color: #FFF;
+  animation: pinkPulse 2s infinite;
+}
+@keyframes redPulse {
+  50% {box-shadow: -8px 8px 18px;color:red;}
+}
+@keyframes bluePulse {
+  50% {box-shadow: -8px 8px 18px;color:deepskyblue;}
+}
+@keyframes pinkPulse {
+  50% {box-shadow: -8px 8px 18px;color:orchid;}
+}
+h1, a
+{
+  padding-left: 2vw;
+  color: deepskyblue;
+  text-shadow: -1px 1px 4px #0074ff;
+  font-family: 'Bebas Neue'
+}
+iframe
+{
+  border-radius: 12px;
+  box-shadow: -4px 4px 15px #FFF;
+}

@@ -2,8 +2,14 @@
 {
   display: flex;
   overflow-x: auto;
-  justify-content: space-around;
-  padding: 2vh;
+  justify-content: flex-start;
+  padding: 2vw;
+}
+.component-wrapper
+{
+  display: flex;
+  flex-direction: column;
+  padding: 3vw;
 }
 .twitch-wrapper-red
 {
@@ -41,4 +47,9 @@ h1, a
   color: deepskyblue;
   text-shadow: -1px 1px 4px #0074ff;
   font-family: 'Bebas Neue'
+}
+iframe
+{
+  border-radius: 12px;
+  box-shadow: -4px 4px 15px #FFF;
 }
