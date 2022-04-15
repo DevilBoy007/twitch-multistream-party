@@ -12,7 +12,7 @@ var credentials = {
 }
 
 app.get('/', (req,res) => {
-  res.sendFile(__dirname + '/home.html')
+  res.sendFile(__dirname + '/index.html')
 })
 app.use(express.static(__dirname + '/'))
 
