@@ -60,4 +60,4 @@ basically just set the channel to your favorite streamer's username, i've includ
 
 1. most of the work happens in the final script element on the index page. ideally this migrates to an external JavaScript file that is called on page load
 2. i'd like to get more user interface features to allow for customization on the frontend; hence the external .js file
-3. party mode :0 ;)
+3. party mode (in-progress...)
