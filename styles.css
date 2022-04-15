@@ -1,0 +1,19 @@
+.container
+{
+  display: flex;
+  overflow-x: auto;
+  justify-content: space-around;
+  padding: 2vh;
+}
+.twitch-wrapper
+{
+  border-radius: 12px;
+  box-shadow: -4px 4px 12px #FFF;
+}
+h1, a
+{
+  padding-left: 2vw;
+  color: deepskyblue;
+  text-shadow: -1px 1px 4px #0074ff;
+  font-family: 'Bebas Neue'
+}
