@@ -8,7 +8,10 @@
 .twitch-wrapper
 {
   border-radius: 12px;
-  box-shadow: -4px 4px 12px #FFF;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  50% {box-shadow: -4px 4px 12px #FFF;}
 }
 h1, a
 {
