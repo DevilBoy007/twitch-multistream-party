@@ -8,6 +8,7 @@
 .component-wrapper
 {
   display: flex;
+  flex-shrink: 1;
   flex-direction: column;
   padding: 3vw;
 }
@@ -16,30 +17,39 @@
   border-radius: 12px;
   box-shadow: -4px 4px 12px;
   color: #FFF;
-  animation: redPulse 2s infinite;
+  animation: redPulse 3s infinite;
 }
 .twitch-wrapper-blue
 {
   border-radius: 12px;
   box-shadow: -4px 4px 12px;
   color: #FFF;
-  animation: bluePulse 2s infinite;
+  animation: bluePulse 3s infinite;
 }
-.twitch-wrapper-pink
+.twitch-wrapper-green
 {
   border-radius: 12px;
   box-shadow: -4px 4px 12px;
   color: #FFF;
-  animation: pinkPulse 2s infinite;
+  animation: greenPulse 3s infinite;
 }
-@keyframes redPulse {
-  50% {box-shadow: -8px 8px 18px;color:red;}
-}
-@keyframes bluePulse {
+@keyframes redPulse
+{
+  0% {box-shadow: -8px 8px 18px;color:red;}
   50% {box-shadow: -8px 8px 18px;color:deepskyblue;}
+  100%{box-shadow: -8px 8px 18px;color:green;}
 }
-@keyframes pinkPulse {
-  50% {box-shadow: -8px 8px 18px;color:orchid;}
+@keyframes bluePulse
+{
+  0% {box-shadow: -8px 8px 18px;color:deepskyblue;}
+  50% {box-shadow: -8px 8px 18px;color:green;}
+  100%{box-shadow: -8px 8px 18px;color:red;}
+}
+@keyframes greenPulse
+{
+  0% {box-shadow: -8px 8px 18px;color:green;}
+  50% {box-shadow: -8px 8px 18px;color:red;}
+  100% {box-shadow: -8px 8px 18px;color:deepskyblue;}
 }
 h1, a
 {
