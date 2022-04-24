@@ -1,0 +1,58 @@
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue" rel="stylesheet">
+</head>
+<style>
+.container
+{
+  display: flex;
+  overflow-x: auto;
+  justify-content: flex-start;
+  padding: 2vw;
+}
+.component-wrapper
+{
+  display: flex;
+  flex-shrink: 1;
+  flex-direction: column;
+  padding: 3vw;
+}
+.twitch-wrapper-blue
+{
+  border-radius: 12px;
+  box-shadow: -4px 4px 12px;
+  color: #FFF;
+  animation: bluePulse 3s infinite;
+}
+@keyframes bluePulse
+{
+  0% {box-shadow: -8px 8px 18px;color:deepskyblue;}
+  50% {box-shadow: -8px 8px 18px;color:green;}
+  100%{box-shadow: -8px 8px 18px;color:red;}
+}
+h1
+{
+  padding-left: 2vw;
+  color: deepskyblue;
+  text-shadow: -1px 1px 4px #0074ff;
+  font-family: 'Bebas Neue'
+}
+iframe
+{
+  border-radius: 12px;
+  box-shadow: -4px 4px 15px #FFF;
+}
+</style>
+<script>
+export let channel
+export let party
+</script>
+<div class="container">
+	<div class="component-wrapper">
+		<h1>{channel}</h1>
+		<div class:twitch-wrapper-blue="{ party == true }">
+			<iframe src='https://player.twitch.tv/?channel={channel}&parent=localhost' title = 'stream' frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+		</div>
+	</div>
+</div>
