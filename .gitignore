@@ -1,4 +1,4 @@
 ./ssl/*.pem
 ./placeholder/ssl
 ./iframe/ssl
-
+./svelte/*.pem

@@ -8,13 +8,15 @@
 {
 	color: orange;
 	background-color: #2A2A2A;
-	position: absolute;
+	top: 1vh;
 	right: 1vw;
+	float:right;
+	position: sticky;
 	max-width: max-content;
 	padding: 1vw;
 	border-radius: 20px;
 	z-index: 1;
-	box-shadow: 2px 3px 15px #000
+	box-shadow: 2px 3px 15px #000;
 }
 </style>
 <script>
@@ -28,6 +30,6 @@
 </script>
 <div class="rounded">
 	<p>Enter a channel to stream:</p>
-	<input type="text" placeholder='auronplay' bind:value={channel}>
+	<input type="text" placeholder='auronplay' on:keydown={(e) => e.key==='Enter'?add():''} bind:value={channel}>
 	<button on:click={add}>add</button>
 </div>

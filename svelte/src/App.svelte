@@ -19,15 +19,13 @@ let sites = [{url:'https://www.codespot.org/',
 let channels = []
 let party = false
 </script>
-<body style="background-color:#272727;justify-content: space-evenly;">
-	<div style="display:flexbox">
-		<PartyButton bind:party/>
-		<TwitchInputBar on:add = { (e) => channels = [...channels, e.detail]}/>
-	</div>
+<body style="background-color:#272727;justify-content: space-evenly; overflow: auto; height:100%">
+	<PartyButton bind:party/>
+	<TwitchInputBar on:add = { (e) => channels = [...channels, e.detail]}/>
 	<!--InputBar on:add={ (e) => sites = [...sites, e.detail]}/-->
-	<div style="display:flex;overflow-x:auto;">
-	{#each channels as channel}
-		<TwitchFeed {channel} {party}/>
+	<div style="display:flex; flex-flow: row wrap;">
+	{#each channels as channel (channel)}
+		<TwitchFeed {channel} {party} on:remove = { (e) => channels = channels.filter(c => c != e.detail) }/>
 	{/each}
 	</div>
 </body>

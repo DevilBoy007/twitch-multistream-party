@@ -4,19 +4,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue" rel="stylesheet">
 </head>
 <style>
-.container
-{
-  display: flex;
-  overflow-x: auto;
-  justify-content: flex-start;
-  padding: 2vw;
-}
 .component-wrapper
 {
   display: flex;
-  flex-shrink: 1;
+  flex-shrink: 2;
   flex-direction: column;
-  padding: 3vw;
+  padding: 2vw;
 }
 .twitch-wrapper-blue
 {
@@ -38,6 +31,10 @@ h1
   text-shadow: -1px 1px 4px #0074ff;
   font-family: 'Bebas Neue'
 }
+h1:hover
+{
+  cursor: not-allowed;
+}
 iframe
 {
   border-radius: 12px;
@@ -47,12 +44,13 @@ iframe
 <script>
 export let channel
 export let party
+import { createEventDispatcher } from 'svelte'
+const dispatch = createEventDispatcher()
+function remove() { dispatch('remove', channel)}
 </script>
-<div class="container">
-	<div class="component-wrapper">
-		<h1>{channel}</h1>
-		<div class:twitch-wrapper-blue="{ party == true }">
-			<iframe src='https://player.twitch.tv/?channel={channel}&parent=localhost' title = 'stream' frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
-		</div>
+<div class="component-wrapper">
+	<h1 on:click={remove}>{channel}</h1>
+	<div class:twitch-wrapper-blue="{ party == true }">
+		<iframe src='https://player.twitch.tv/?channel={channel}&parent=localhost' title = 'stream' frameborder="0" allowfullscreen="true" scrolling="no" height="252" width="413"></iframe>
 	</div>
 </div>
