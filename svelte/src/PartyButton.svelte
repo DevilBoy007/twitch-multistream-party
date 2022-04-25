@@ -1,3 +1,7 @@
+<svelte:head>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.42.4/tsparticles.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles-preset-confetti@1.42.4/tsparticles.preset.confetti.min.js"></script>
+</svelte:head>
 <style>
 .switch-toggle {
     height: 40px;
@@ -50,8 +54,28 @@
 </style>
 <script>
   export let party
+  function theparty()
+  {
+    confetti("tsparticles", {
+    angle: 330,
+    count: 99,
+    position: { x: 10, y: 10 },
+    spread: 120,
+    startVelocity: 60,
+    decay: 1.1,
+    gravity: 1,
+    drift: 0,
+    ticks: 300,
+    colors: ["#66ff33", "#ffa500","#da70d6"],
+    shapes: ["square", "circle"],
+    scalar: 1,
+    zIndex: 100,
+    disableForReducedMotion: true
+  });
+  }
 </script>
 <div class='switch-toggle'>
-  <input type='checkbox' bind:checked={party} id='party'>
+  <input id='party' type='checkbox' bind:checked={party} on:click={party?'':theparty()}>
   <label for='party'></label>
 </div>
+<div id='tsparticles'></div>
