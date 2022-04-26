@@ -20,7 +20,9 @@ let channels = []
 let party = false
 </script>
 <body style="background-color:#272727;justify-content: space-evenly; overflow: auto; height:100%">
+<div style="display:flex"> <!--this is a flexbox for future button add-ons-->
 	<PartyButton bind:party/>
+</div>
 	<TwitchInputBar on:add = { (e) => channels = [...channels, e.detail]}/>
 	<!--InputBar on:add={ (e) => sites = [...sites, e.detail]}/-->
 	<div style="display:flex; flex-flow: row wrap;">

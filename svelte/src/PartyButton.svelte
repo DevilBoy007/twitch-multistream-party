@@ -4,6 +4,7 @@
 </svelte:head>
 <style>
 .switch-toggle {
+    margin: 1vw;
     height: 40px;
 }
 
