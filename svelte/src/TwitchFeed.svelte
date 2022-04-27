@@ -16,7 +16,7 @@
   border-radius: 12px;
   box-shadow: -4px 4px 12px;
   color: #FFF;
-  animation: bluePulse 3s infinite;
+  animation: bluePulse 2s infinite;
 }
 @keyframes bluePulse
 {
