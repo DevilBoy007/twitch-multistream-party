@@ -7,7 +7,7 @@ import TwitchInputBar from './TwitchInputBar.svelte'
 import PartyButton from './PartyButton.svelte'
 import StreamSearch from './StreamSearch.svelte'
 let channels = []
-let available_streams
+let available_streams = []
 let party = false
 </script>
 <style>
@@ -94,9 +94,9 @@ let party = false
 <div class='PanelWrapper'>
 	<div class="{party?'InputWrapperParty':'InputWrapper'}">
 		<TwitchInputBar on:add = { (e) => channels = [...channels, e.detail]}/>
-		<StreamSearch on:search = { (e) => available_streams = e.detail}/>
+		<StreamSearch on:search = { (e) => available_streams = e.detail} on:clear={(e)=>available_streams=[]}/>
 	</div>
-	{#if available_streams}
+	{#if available_streams.length>0}
 	<div class="{party?'OutputWrapperParty':'OutputWrapper'}">
 		<ul>
 		{#each available_streams as user (user)}

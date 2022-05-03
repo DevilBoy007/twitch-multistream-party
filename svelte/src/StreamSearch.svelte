@@ -58,6 +58,6 @@
 </script>
 <div class='rounded'>
   <p>Search live game streams</p>
-  <input id='game' type='search' placeholder='Apex Legends' bind:value={input} on:keydown={(e) => e.key==='Enter'?search(input):''}/>
+  <input id='game' type='search' placeholder='Apex Legends' bind:value={input} on:search={ () => dispatch('clear')} on:keydown={(e) => e.key==='Enter'?search(input):''}/>
   <button on:click = {search(input)}>search</button>
 </div>
