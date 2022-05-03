@@ -19,7 +19,7 @@ let party = false
 	{
 		display: flex;
 		flex-flow: column nowrap;
-		/*top: 1vh |this style keeps input wrapper div in view at all time but removes the ability for stream list to slide behind input bar| */
+		/*top: 1vh |this style keeps input wrapper div in view at all time but removes the ability for stream list to slide behind input bar */
 		right: 1vw;
 		float: right;
 		position: sticky
@@ -63,10 +63,28 @@ let party = false
 		padding-right: 1vw;
 		padding-left:0;
 	}
+	.OutputWrapperParty
+	{
+		color: whitesmoke;
+		max-width: max-content;
+		max-height: 20vh;
+		overflow-y: auto;
+		border-radius: 20px;
+		box-shadow: 2px 3px 15px #000;
+		margin-top: 1vh;
+		padding-right: 1vw;
+		padding-left:0;
+		animation: fade2 3s infinite;
+	}
 	@keyframes fade {
 		0% {background-color: orange;}
 	  50% {background-color: orchid;}
 	  100%{background-color: deepskyblue;}
+	}
+	@keyframes fade2 {
+		0% {background-color: deepskyblue;}
+	  50% {background-color: orchid;}
+	  100%{background-color: orange;}
 	}
 </style>
 <body style="font:'Gill Sans';font-size: 18px; background-color:#272727;justify-content: space-evenly; overflow: auto; height:100%">
@@ -79,7 +97,7 @@ let party = false
 		<StreamSearch on:search = { (e) => available_streams = e.detail}/>
 	</div>
 	{#if available_streams}
-	<div class='OutputWrapper'>
+	<div class="{party?'OutputWrapperParty':'OutputWrapper'}">
 		<ul>
 		{#each available_streams as user (user)}
 			<p class='Stream' on:click={()=>{channels=[...channels,user]; available_streams=available_streams.filter(c => c!= user)}}>{user}</p>
