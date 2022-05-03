@@ -51,6 +51,6 @@ function remove() { dispatch('remove', channel)}
 <div class="component-wrapper">
 	<h1 on:click={remove}>{channel}</h1>
 	<div class:twitch-wrapper-blue="{ party == true }">
-		<iframe src='https://player.twitch.tv/?channel={channel}&parent=localhost' title = 'stream' frameborder="0" allowfullscreen="true" scrolling="no" height="252" width="413"></iframe>
+		<iframe src='https://player.twitch.tv/?channel={channel}&parent=localhost' title = 'stream' frameborder="0" allowfullscreen="true" scrolling="no" height="366" width="600"></iframe>
 	</div>
 </div>

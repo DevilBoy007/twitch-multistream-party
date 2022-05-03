@@ -2,28 +2,78 @@
 	title="archives"
 </svelte:head>
 <script>
-// import SiteView from './SiteView.svelte'
 import TwitchFeed from './TwitchFeed.svelte'
-// import InputBar from './InputBar.svelte'
 import TwitchInputBar from './TwitchInputBar.svelte'
 import PartyButton from './PartyButton.svelte'
-/*
-let sites = [{url:'https://www.codespot.org/',
-								  title:'codespot '},
-								{url:'https://www.merriam-webster.com/word-of-the-day/calendar',
-									title: 'word of the day'},
-								{url:'https://css-tricks.com/snippets/css/a-guide-to-flexbox/',
-									title:'css-tricks flexbox'},
-								{url:'http://www.nationalgeographic.com', title:'Nat Geo'}]
-								*/
+import StreamSearch from './StreamSearch.svelte'
 let channels = []
+let available_streams
 let party = false
 </script>
-<body style="background-color:#272727;justify-content: space-evenly; overflow: auto; height:100%">
+<style>
+	.PanelWrapper
+	{
+		display: flex;
+		flex-flow: column nowrap;
+		top: 1vh;
+		right: 1vw;
+		float: right;
+		position: sticky
+	}
+	.InputWrapper
+	{
+		color: orange;
+		background-color: #2A2A2A;
+		max-width: max-content;
+		border-radius: 20px;
+		box-shadow: 2px 3px 15px #000;
+	}
+	.InputWrapperParty
+	{
+		color: whitesmoke;
+		max-width: max-content;
+		border-radius: 20px;
+		box-shadow: 2px 3px 15px #000;
+		animation: fade 3s infinite
+	}
+	.OutputWrapper
+	{
+		color: orange;
+		background-color: #2A2A2A;
+		max-width: max-content;
+		max-height: 20vh;
+		overflow-y: auto;
+		border-radius: 20px;
+		box-shadow: 2px 3px 15px #000;
+		margin-top: 1vh;
+		padding-right: 1vw;
+		padding-left:0;
+	}
+	@keyframes fade {
+		0% {background-color: orange;}
+	  50% {background-color: orchid;}
+	  100%{background-color: deepskyblue;}
+	}
+</style>
+<body style="font:'Gill Sans';font-size: 18px; background-color:#272727;justify-content: space-evenly; overflow: auto; height:100%">
 <div style="display:flex"> <!--this is a flexbox for future button add-ons-->
 	<PartyButton bind:party/>
 </div>
-	<TwitchInputBar on:add = { (e) => channels = [...channels, e.detail]}/>
+<div class='PanelWrapper'>
+	<div class="{party?'InputWrapperParty':'InputWrapper'}">
+		<TwitchInputBar on:add = { (e) => channels = [...channels, e.detail]}/>
+		<StreamSearch on:search = { (e) => available_streams = e.detail}/>
+	</div>
+	{#if available_streams}
+	<div class='OutputWrapper'>
+		<ul>
+		{#each available_streams as user (user)}
+			<p>{user}</p>
+		{/each}
+		</ul>
+	</div>
+	{/if}
+</div>
 	<!--InputBar on:add={ (e) => sites = [...sites, e.detail]}/-->
 	<div style="display:flex; flex-flow: row wrap;">
 	{#each channels as channel (channel)}
