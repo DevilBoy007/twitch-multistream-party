@@ -22,7 +22,7 @@
 {
   0% {box-shadow: -8px 8px 18px;color:deepskyblue;}
   50% {box-shadow: -8px 8px 18px;color:green;}
-  100%{box-shadow: -8px 8px 18px;color:red;}
+  100%{box-shadow: -8px 8px 18px;color:orchid;}
 }
 h1
 {

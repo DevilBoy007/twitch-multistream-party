@@ -2,13 +2,19 @@
 	title="archives"
 </svelte:head>
 <script>
+//import {HsvPicker} from 'svelte-color-picker'
 import TwitchFeed from './TwitchFeed.svelte'
 import TwitchInputBar from './TwitchInputBar.svelte'
 import PartyButton from './PartyButton.svelte'
 import StreamSearch from './StreamSearch.svelte'
+import ColorPicker from './ColorPicker.svelte'
 let channels = []
 let available_streams = []
 let party = false
+
+function colorCallback(e){
+	console.log(e.detail)
+}
 </script>
 <style>
 	.Stream:hover
@@ -54,7 +60,7 @@ let party = false
 	{
 		color: orange;
 		background-color: #2A2A2A;
-		max-width: max-content;
+		max-width: 12vw;
 		max-height: 20vh;
 		overflow-y: auto;
 		border-radius: 20px;
@@ -62,18 +68,19 @@ let party = false
 		margin-top: 1vh;
 		padding-right: 1vw;
 		padding-left:0;
+		position:absolute;
 	}
 	.OutputWrapperParty
 	{
 		color: whitesmoke;
-		max-width: max-content;
+		max-width: 12vw;
 		max-height: 20vh;
 		overflow-y: auto;
 		border-radius: 20px;
 		box-shadow: 2px 3px 15px #000;
 		margin-top: 1vh;
-		padding-right: 1vw;
 		padding-left:0;
+		position: absolute;
 		animation: fade2 3s infinite;
 	}
 	@keyframes fade {
@@ -96,15 +103,19 @@ let party = false
 		<TwitchInputBar on:add = { (e) => channels = [...channels, e.detail]}/>
 		<StreamSearch on:search = { (e) => available_streams = e.detail} on:clear={(e)=>available_streams=[]}/>
 	</div>
-	{#if available_streams.length>0}
-	<div class="{party?'OutputWrapperParty':'OutputWrapper'}">
-		<ul>
-		{#each available_streams as user (user)}
-			<p class='Stream' on:click={()=>{channels=[...channels,user]; available_streams=available_streams.filter(c => c!= user)}}>{user}</p>
-		{/each}
-		</ul>
+	<div>
+		{#if available_streams.length>0}
+		<div class="{party?'OutputWrapperParty':'OutputWrapper'}">
+			<ul>
+			{#each available_streams as user (user)}
+				<p class='Stream' on:click={()=>{channels=[...channels,user]; available_streams=available_streams.filter(c => c!= user)}}>{user}</p>
+			{/each}
+			</ul>
+		</div>
+		{/if}
+		<ColorPicker/>
+		<ColorPicker/>
 	</div>
-	{/if}
 </div>
 	<!--InputBar on:add={ (e) => sites = [...sites, e.detail]}/-->
 	<div style="display:flex; flex-flow: row wrap;">
