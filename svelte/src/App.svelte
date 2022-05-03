@@ -15,7 +15,7 @@ let party = false
 	{
 		display: flex;
 		flex-flow: column nowrap;
-		top: 1vh;
+		/*top: 1vh |this style keeps input wrapper div in view at all time but removes the ability for stream list to slide behind input bar| */
 		right: 1vw;
 		float: right;
 		position: sticky
@@ -24,16 +24,26 @@ let party = false
 	{
 		color: orange;
 		background-color: #2A2A2A;
+		top: 1vh;
+		right:1vw;
+		float:right;
+		position:sticky;
 		max-width: max-content;
 		border-radius: 20px;
 		box-shadow: 2px 3px 15px #000;
+		z-index: 1;
 	}
 	.InputWrapperParty
 	{
 		color: whitesmoke;
+		top: 1vh;
+		right:1vw;
+		float:right;
+		position:sticky;
 		max-width: max-content;
 		border-radius: 20px;
 		box-shadow: 2px 3px 15px #000;
+		z-index: 1;
 		animation: fade 3s infinite
 	}
 	.OutputWrapper
