@@ -11,6 +11,10 @@ let available_streams
 let party = false
 </script>
 <style>
+	.Stream:hover
+	{
+		cursor: pointer;
+	}
 	.PanelWrapper
 	{
 		display: flex;
@@ -78,7 +82,7 @@ let party = false
 	<div class='OutputWrapper'>
 		<ul>
 		{#each available_streams as user (user)}
-			<p>{user}</p>
+			<p class='Stream' on:click={()=>{channels=[...channels,user]; available_streams=available_streams.filter(c => c!= user)}}>{user}</p>
 		{/each}
 		</ul>
 	</div>
