@@ -11,12 +11,17 @@ import ColorPicker from './ColorPicker.svelte'
 let channels = []
 let available_streams = []
 let party = false
+let partyScreenColors
+let partyUIColors
 
-function colorCallback(e){
-	console.log(e.detail)
-}
+partyScreenColors = {color1:'#00bfff', color2:'#008000', color3:'#da70d6'}
+partyUIColors = {color1: '#00bfff', color2: '#FFA500', color3: '#da70d6'}
 </script>
 <style>
+	.Stream
+	{
+		padding-left: 0;
+	}
 	.Stream:hover
 	{
 		cursor: pointer;
@@ -60,20 +65,18 @@ function colorCallback(e){
 	{
 		color: orange;
 		background-color: #2A2A2A;
-		max-width: 12vw;
+		max-width: 9em;
 		max-height: 20vh;
 		overflow-y: auto;
 		border-radius: 20px;
 		box-shadow: 2px 3px 15px #000;
 		margin-top: 1vh;
-		padding-right: 1vw;
-		padding-left:0;
 		position:absolute;
 	}
 	.OutputWrapperParty
 	{
 		color: whitesmoke;
-		max-width: 12vw;
+		max-width: 9em;
 		max-height: 20vh;
 		overflow-y: auto;
 		border-radius: 20px;
@@ -92,6 +95,10 @@ function colorCallback(e){
 		0% {background-color: deepskyblue;}
 	  50% {background-color: orchid;}
 	  100%{background-color: orange;}
+	}
+	ul
+	{
+		padding-left:1em;
 	}
 </style>
 <body style="font:'Gill Sans';font-size: 18px; background-color:#272727;justify-content: space-evenly; overflow: auto; height:100%">
@@ -113,14 +120,14 @@ function colorCallback(e){
 			</ul>
 		</div>
 		{/if}
-		<ColorPicker/>
-		<ColorPicker/>
+		<ColorPicker {...partyUIColors}/>
+		<ColorPicker {...partyScreenColors} on:color1={(e) => partyScreenColors['color1']=e.detail } on:color2={ (e) => partyScreenColors['color2']=e.detail } on:color3={ (e) => partyScreenColors['color3']=e.detail }/>
 	</div>
 </div>
 	<!--InputBar on:add={ (e) => sites = [...sites, e.detail]}/-->
 	<div style="display:flex; flex-flow: row wrap;">
 	{#each channels as channel (channel)}
-		<TwitchFeed {channel} {party} on:remove = { (e) => channels = channels.filter(c => c != e.detail) }/>
+		<TwitchFeed {channel} {party} bind:color1={partyScreenColors['color1']} bind:color2={partyScreenColors['color2']} bind:color3={partyScreenColors['color3']} on:remove = { (e) => channels = channels.filter(c => c != e.detail) }/>
 	{/each}
 	</div>
 </body>

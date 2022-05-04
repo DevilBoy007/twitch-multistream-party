@@ -1,8 +1,11 @@
 <style>
 .rounded
 {
+  display:flex;
+  flex-flow: column nowrap;
   background-color: #2a2a2a;
 	max-width: max-content;
+  max-height: max-content;
 	padding: 1vw;
 	padding-bottom: 0;
 	border-radius: 12px;
@@ -22,11 +25,15 @@ input
 }
 </style>
 <script>
-	let colors = ['#00bfff','#008000','#da70d6']
+  import { createEventDispatcher } from 'svelte'
+  const dispatch = createEventDispatcher()
+	export let color1, color2, color3
 </script>
 <div class=rounded>
-	{#each colors as color (color)}
-	<input type=color value={color}>
+	<input type=color bind:value={color1} on:change={dispatch('color1',color1)}>
   <br>
-	{/each}
+  <input type=color bind:value={color2} on:change={dispatch('color2',color2)}>
+  <br>
+  <input type=color bind:value={color3} on:change={dispatch('color3',color3)}>
+  <br>
 </div>
