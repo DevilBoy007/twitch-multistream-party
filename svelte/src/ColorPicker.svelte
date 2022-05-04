@@ -30,10 +30,10 @@ input
 	export let color1, color2, color3
 </script>
 <div class=rounded>
-	<input type=color bind:value={color1} on:change={dispatch('color1',color1)}>
+	<input type=color bind:value={color1} on:change={()=>{dispatch('color1',color1); console.log(color1)}}>
   <br>
-  <input type=color bind:value={color2} on:change={dispatch('color2',color2)}>
+  <input type=color bind:value={color2} on:change={()=>{dispatch('color2',color2); console.log(color2)}}>
   <br>
-  <input type=color bind:value={color3} on:change={dispatch('color3',color3)}>
+  <input type=color bind:value={color3} on:change={()=>{dispatch('color3',color3); console.log(color3)}}>
   <br>
 </div>

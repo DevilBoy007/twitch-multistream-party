@@ -120,7 +120,7 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 			</ul>
 		</div>
 		{/if}
-		<ColorPicker {...partyUIColors} on:color1={(e) => {partyUIColors['color1']=e.detail} } on:color2={ (e) => {partyUIColors['color2']=e.detail} } on:color3={ (e) => {partyUIColors['color3']=e.detail} }/>
+		<ColorPicker {...partyUIColors} on:color1={(e) => {partyUIColors['color1']=e.detail; console.log(partyUIColors)} } on:color2={ (e) => {partyUIColors['color2']=e.detail} } on:color3={ (e) => {partyUIColors['color3']=e.detail} }/>
 		<ColorPicker {...partyScreenColors} on:color1={(e) => {partyScreenColors['color1']=e.detail} } on:color2={ (e) => {partyScreenColors['color2']=e.detail} } on:color3={ (e) => {partyScreenColors['color3']=e.detail} }/>
 	</div>
 </div>
