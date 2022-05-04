@@ -15,7 +15,7 @@ let partyScreenColors
 let partyUIColors
 
 partyScreenColors = {color1:'#00bfff', color2:'#008000', color3:'#da70d6'}
-partyUIColors = {color1: '#00bfff', color2: '#FFA500', color3: '#da70d6'}
+partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 </script>
 <style>
 	.Stream
@@ -87,14 +87,14 @@ partyUIColors = {color1: '#00bfff', color2: '#FFA500', color3: '#da70d6'}
 		animation: fade2 3s infinite;
 	}
 	@keyframes fade {
-		0% {background-color: orange;}
-	  50% {background-color: orchid;}
-	  100%{background-color: deepskyblue;}
+		0% {background-color: var(--c1,'orchid');}
+	  50% {background-color: var(--c2,'orange');}
+	  100%{background-color: var(--c3,'deepskyblue');}
 	}
 	@keyframes fade2 {
-		0% {background-color: deepskyblue;}
-	  50% {background-color: orchid;}
-	  100%{background-color: orange;}
+		0% {background-color: var(--c3,'deepskyblue');}
+	  50% {background-color: var(--c2,'orange');}
+	  100%{background-color: var(--c1,'orchid');}
 	}
 	ul
 	{
@@ -106,13 +106,13 @@ partyUIColors = {color1: '#00bfff', color2: '#FFA500', color3: '#da70d6'}
 	<PartyButton bind:party/>
 </div>
 <div class='PanelWrapper'>
-	<div class="{party?'InputWrapperParty':'InputWrapper'}">
+	<div class="{party?'InputWrapperParty':'InputWrapper'}" style="--c1:{partyUIColors['color1']}; --c2:{partyUIColors['color2']}; --c3:{partyUIColors['color3']}">
 		<TwitchInputBar on:add = { (e) => channels = [...channels, e.detail]}/>
 		<StreamSearch on:search = { (e) => available_streams = e.detail} on:clear={(e)=>available_streams=[]}/>
 	</div>
 	<div>
 		{#if available_streams.length>0}
-		<div class="{party?'OutputWrapperParty':'OutputWrapper'}">
+		<div class="{party?'OutputWrapperParty':'OutputWrapper'}" style="--c1:{partyUIColors['color1']}; --c2:{partyUIColors['color2']}; --c3:{partyUIColors['color3']}">
 			<ul>
 			{#each available_streams as user (user)}
 				<p class='Stream' on:click={()=>{channels=[...channels,user]; available_streams=available_streams.filter(c => c!= user)}}>{user}</p>
@@ -120,8 +120,8 @@ partyUIColors = {color1: '#00bfff', color2: '#FFA500', color3: '#da70d6'}
 			</ul>
 		</div>
 		{/if}
-		<ColorPicker {...partyUIColors}/>
-		<ColorPicker {...partyScreenColors} on:color1={(e) => partyScreenColors['color1']=e.detail } on:color2={ (e) => partyScreenColors['color2']=e.detail } on:color3={ (e) => partyScreenColors['color3']=e.detail }/>
+		<ColorPicker {...partyUIColors} on:color1={(e) => {partyUIColors['color1']=e.detail} } on:color2={ (e) => {partyUIColors['color2']=e.detail} } on:color3={ (e) => {partyUIColors['color3']=e.detail} }/>
+		<ColorPicker {...partyScreenColors} on:color1={(e) => {partyScreenColors['color1']=e.detail} } on:color2={ (e) => {partyScreenColors['color2']=e.detail} } on:color3={ (e) => {partyScreenColors['color3']=e.detail} }/>
 	</div>
 </div>
 	<!--InputBar on:add={ (e) => sites = [...sites, e.detail]}/-->
