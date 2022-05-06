@@ -120,14 +120,14 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 			</ul>
 		</div>
 		{/if}
-		<ColorPicker {...partyUIColors} on:color1={(e) => {partyUIColors['color1']=e.detail; console.log(partyUIColors)} } on:color2={ (e) => {partyUIColors['color2']=e.detail} } on:color3={ (e) => {partyUIColors['color3']=e.detail} }/>
+		<ColorPicker {...partyUIColors} on:color1={(e) => {partyUIColors['color1']=e.detail }} on:color2={ (e) => {partyUIColors['color2']=e.detail }} on:color3={(e) => {partyUIColors['color3']=e.detail }}/>
 		<ColorPicker {...partyScreenColors} on:color1={(e) => {partyScreenColors['color1']=e.detail} } on:color2={ (e) => {partyScreenColors['color2']=e.detail} } on:color3={ (e) => {partyScreenColors['color3']=e.detail} }/>
 	</div>
 </div>
 	<!--InputBar on:add={ (e) => sites = [...sites, e.detail]}/-->
 	<div style="display:flex; flex-flow: row wrap;">
-	{#each channels as channel (channel)}
-		<TwitchFeed {channel} {party} bind:color1={partyScreenColors['color1']} bind:color2={partyScreenColors['color2']} bind:color3={partyScreenColors['color3']} on:remove = { (e) => channels = channels.filter(c => c != e.detail) }/>
+	{#each channels as channel, i (i)}
+		<TwitchFeed id="item{i+1}"{channel} {party} order={i} bind:color1={partyScreenColors['color1']} bind:color2={partyScreenColors['color2']} bind:color3={partyScreenColors['color3']} on:remove = { (e) => channels = channels.filter(c => c != e.detail) }/>
 	{/each}
 	</div>
 </body>
