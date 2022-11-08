@@ -17,6 +17,7 @@ let partyScreenColors
 let partyUIColors
 let token = ''
 let ttColor = false
+let ttColor2 = true
 const data = 
 {
 	'grant_type':'client_credentials',
@@ -158,9 +159,8 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 	<div style="display:flex"> <!--this is a flexbox for future button add-ons-->
 		<PartyButton bind:party/>
 	</div>
-	<div style="display: flex"> <!--this is a flexbox for future tooltip pop-ups-->
-		<Tooltip bind:state={ttColor} text={"toggle switch to see your changes!"}/>
-	</div>
+	<Tooltip bind:state={ttColor} text={"toggle switch to see your changes!"}/>
+
 	<!--InputBar on:add={ (e) => sites = [...sites, e.detail]}/-->
 	<div style="display:flex; flex-flow: row wrap;">
 	{#each channels as channel, i (i)}

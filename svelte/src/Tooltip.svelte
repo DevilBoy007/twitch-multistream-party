@@ -2,6 +2,7 @@
     div
     {
         font: 'Gill Sans';
+        margin: 1vw;
     }
     p 
     {
