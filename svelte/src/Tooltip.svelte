@@ -7,7 +7,7 @@
     {
         font-size: .9rem;
         margin-right:-1rem;
-        color: gainsboro;
+        color: orange;
     }
     .chip
     {
@@ -49,13 +49,16 @@
     import { createEventDispatcher } from 'svelte'
     const dispatch = createEventDispatcher()
     export let text = "this should be a helpful tooltip!";
+    export let state = true;
 </script>
-<div class="chip">
-    <div class="close">
-        x
+{#if state}
+    <div class="chip">
+        <div class="close" on:click={()=>{state=false}}>
+            x
+        </div>
+            <p>{text}</p>
+        <div class="icon">
+            i
+        </div>
     </div>
-        <p>{text}</p>
-    <div class="icon">
-        i
-    </div>
-</div>
+{/if}

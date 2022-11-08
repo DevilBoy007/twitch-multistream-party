@@ -16,7 +16,7 @@ let party = false
 let partyScreenColors
 let partyUIColors
 let token = ''
-
+let ttColor = false
 const data = 
 {
 	'grant_type':'client_credentials',
@@ -134,33 +134,33 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 	}
 </style>
 <body style="font:'Gill Sans';font-size: 18px; background-color:#272727;justify-content: space-evenly; overflow: auto; height:100%">
-<div style="display:flex"> <!--this is a flexbox for future button add-ons-->
-	<PartyButton bind:party/>
-</div>
-<div class='PanelWrapper'>
-	<div class="{party?'InputWrapperParty':'InputWrapper'}" style="--c1:{partyUIColors['color1']}; --c2:{partyUIColors['color2']}; --c3:{partyUIColors['color3']}">
-		<TwitchInputBar on:add = { (e) => channels = [...channels, e.detail]}/>
-		<StreamSearch token={token} on:search = { (e) => available_streams = e.detail} on:clear={(e)=>available_streams=[]}/>
-	</div>
-	<div>
-	{#if available_streams.length>0}
-		<div class="{party?'OutputWrapperParty':'OutputWrapper'}" style="--c1:{partyUIColors['color1']}; --c2:{partyUIColors['color2']}; --c3:{partyUIColors['color3']}">
-			<ul>
-			{#each available_streams as user (user)}
-				<p class='Stream' on:click={()=>{channels=[...channels,user]; available_streams=available_streams.filter(c => c != user)}}>{ user }</p>
-			{/each}
-			</ul>
+	<div class='PanelWrapper'>
+		<div class="{party?'InputWrapperParty':'InputWrapper'}" style="--c1:{partyUIColors['color1']}; --c2:{partyUIColors['color2']}; --c3:{partyUIColors['color3']}">
+			<TwitchInputBar on:add = { (e) => channels = [...channels, e.detail]}/>
+			<StreamSearch token={token} on:search = { (e) => available_streams = e.detail} on:clear={(e)=>available_streams=[]}/>
 		</div>
-	{/if}
-	{#if party}
-		<ColorPicker {...partyUIColors} name={"ui"} on:color1={(e) => {partyUIColors['color1']=e.detail }} on:color2={ (e) => {partyUIColors['color2']=e.detail }} on:color3={(e) => {partyUIColors['color3']=e.detail }}/>
-		<ColorPicker {...partyScreenColors} name={"screens"} on:color1={(e) => {partyScreenColors['color1']=e.detail} } on:color2={ (e) => {partyScreenColors['color2']=e.detail} } on:color3={ (e) => {partyScreenColors['color3']=e.detail} }/>
-	{/if}
+		<div>
+		{#if available_streams.length>0}
+			<div class="{party?'OutputWrapperParty':'OutputWrapper'}" style="--c1:{partyUIColors['color1']}; --c2:{partyUIColors['color2']}; --c3:{partyUIColors['color3']}">
+				<ul>
+					{#each available_streams as user (user)}
+					<p class='Stream' on:click={()=>{channels=[...channels,user]; available_streams=available_streams.filter(c => c != user)}}>{ user }</p>
+					{/each}
+				</ul>
+			</div>
+		{/if}
+		{#if party}
+			<ColorPicker {...partyUIColors} name={"ui"} on:color1={(e) => {partyUIColors['color1']=e.detail; ttColor = true }} on:color2={ (e) => {partyUIColors['color2']=e.detail; ttColor = true }} on:color3={(e) => {partyUIColors['color3']=e.detail; ttColor = true }}/>
+			<ColorPicker {...partyScreenColors} name={"screens"} on:color1={(e) => {partyScreenColors['color1']=e.detail; ttColor = true} } on:color2={ (e) => {partyScreenColors['color2']=e.detail; ttColor = true} } on:color3={ (e) => {partyScreenColors['color3']=e.detail; ttColor = true} }/>
+		{/if}
+		</div>
 	</div>
-</div>
-{#if party}
-	<Tooltip text={"toggle switch to see your changes!"}/>
-{/if}
+	<div style="display:flex"> <!--this is a flexbox for future button add-ons-->
+		<PartyButton bind:party/>
+	</div>
+	<div style="display: flex"> <!--this is a flexbox for future tooltip pop-ups-->
+		<Tooltip bind:state={ttColor} text={"toggle switch to see your changes!"}/>
+	</div>
 	<!--InputBar on:add={ (e) => sites = [...sites, e.detail]}/-->
 	<div style="display:flex; flex-flow: row wrap;">
 	{#each channels as channel, i (i)}
