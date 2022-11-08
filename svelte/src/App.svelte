@@ -1,5 +1,5 @@
 <svelte:head>
-	title="archives"
+	title="twitch party"
 </svelte:head>
 <script>
 //import {HsvPicker} from 'svelte-color-picker'
@@ -135,6 +135,9 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 	}
 </style>
 <body style="font:'Gill Sans';font-size: 18px; background-color:#272727;justify-content: space-evenly; overflow: auto; height:100%">
+	<div style="display:flex"> <!--this is a flexbox for future button add-ons-->
+		<PartyButton bind:party/>
+	</div>
 	<div class='PanelWrapper'>
 		<div class="{party?'InputWrapperParty':'InputWrapper'}" style="--c1:{partyUIColors['color1']}; --c2:{partyUIColors['color2']}; --c3:{partyUIColors['color3']}">
 			<TwitchInputBar on:add = { (e) => channels = [...channels, e.detail]}/>
@@ -156,11 +159,8 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 		{/if}
 		</div>
 	</div>
-	<div style="display:flex"> <!--this is a flexbox for future button add-ons-->
-		<PartyButton bind:party/>
-	</div>
-	<Tooltip bind:state={ttParty} text={"Toggle the switch to start the party! 🥳"}/>
-	<Tooltip bind:state={ttColor} text={"toggle switch to see your changes!"}/>
+	<Tooltip bind:state={ttParty} text={"Flip the switch to start the party! 🥳"}/>
+	<Tooltip bind:state={ttColor} text={"Toggle switch to see your changes!"}/>
 
 	<!--InputBar on:add={ (e) => sites = [...sites, e.detail]}/-->
 	<div style="display:flex; flex-flow: row wrap;">
