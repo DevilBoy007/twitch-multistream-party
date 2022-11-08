@@ -15,20 +15,23 @@
   let channels
   let url
   let params
+  export let token = ''
   async	function getGameID(game) {
+		console.log(`attempting to get game ID for ${game} using access token: ${token}`)
 		params = new URLSearchParams({ name:game })
 		url = 'https://api.twitch.tv/helix/games?' + params
 		const response = await fetch(url,
 				 {
 					method: 'GET',
 					headers: {
-						'Authorization': 'Bearer tb0h8i9um3n6skoufnc011ay9k0vsw',
+						'Authorization': `Bearer ${token}`,
 						'Client-Id':'g4jmj1um0k0rs5b57yescjc81zv6oc'
 					}
 		})
 		.then( response => { return response.json() })
 		.catch( e => console.log(e))
-//		console.log(response.data[0].id)
+		console.log('RESPONSE', response)
+		console.log(response.data[0].id)
 		return response.data[0].id
 	}
   async	function getStreams(game) {
@@ -39,7 +42,7 @@
 			{
 			method: 'GET',
 			headers: {
-				'Authorization': 'Bearer 9elniowo48r9ghy4435fgvorx1bbck',
+				'Authorization': `Bearer ${token}`,
 				'Client-Id':'g4jmj1um0k0rs5b57yescjc81zv6oc'
 			}
 		})

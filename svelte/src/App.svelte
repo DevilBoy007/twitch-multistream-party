@@ -3,16 +3,40 @@
 </svelte:head>
 <script>
 //import {HsvPicker} from 'svelte-color-picker'
+import { onMount } from 'svelte';
 import TwitchFeed from './TwitchFeed.svelte'
 import TwitchInputBar from './TwitchInputBar.svelte'
 import PartyButton from './PartyButton.svelte'
 import StreamSearch from './StreamSearch.svelte'
 import ColorPicker from './ColorPicker.svelte'
+import Tooltip from './Tooltip.svelte'
 let channels = []
 let available_streams = []
 let party = false
 let partyScreenColors
 let partyUIColors
+let token = ''
+
+const data = 
+{
+	'grant_type':'client_credentials',
+	'client_id':'g4jmj1um0k0rs5b57yescjc81zv6oc',
+	'client_secret':'m24gzg5ryd7qqk3ytyj8t996a7mdwq'
+}
+onMount(async () => {
+	await fetch('https://id.twitch.tv/oauth2/token', {
+		method: 'POST',
+		body: JSON.stringify(data),
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	}).then(response => {
+		return response.json()
+	}).then(data => {
+		token = data.access_token
+		console.log(`Session access token: ${token}`)
+	}).catch(e => console.log(e))
+})
 
 partyScreenColors = {color1:'#00bfff', color2:'#008000', color3:'#da70d6'}
 partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
@@ -41,6 +65,7 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 		background-color: #2A2A2A;
 		top: 1vh;
 		right:1vw;
+		margin-bottom: 1em;
 		float:right;
 		position:sticky;
 		max-width: max-content;
@@ -53,6 +78,7 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 		color: whitesmoke;
 		top: 1vh;
 		right:1vw;
+		margin-bottom: 1em;
 		float:right;
 		position:sticky;
 		max-width: max-content;
@@ -68,6 +94,7 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 		max-width: 9em;
 		max-height: 20vh;
 		overflow-y: auto;
+		padding-right: 0.5em;
 		border-radius: 20px;
 		box-shadow: 2px 3px 15px #000;
 		margin-top: 1vh;
@@ -100,6 +127,11 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 	{
 		padding-left:1em;
 	}
+	iframe
+	{
+		margin-top: 1em;
+		float: right;
+	}
 </style>
 <body style="font:'Gill Sans';font-size: 18px; background-color:#272727;justify-content: space-evenly; overflow: auto; height:100%">
 <div style="display:flex"> <!--this is a flexbox for future button add-ons-->
@@ -108,22 +140,27 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 <div class='PanelWrapper'>
 	<div class="{party?'InputWrapperParty':'InputWrapper'}" style="--c1:{partyUIColors['color1']}; --c2:{partyUIColors['color2']}; --c3:{partyUIColors['color3']}">
 		<TwitchInputBar on:add = { (e) => channels = [...channels, e.detail]}/>
-		<StreamSearch on:search = { (e) => available_streams = e.detail} on:clear={(e)=>available_streams=[]}/>
+		<StreamSearch token={token} on:search = { (e) => available_streams = e.detail} on:clear={(e)=>available_streams=[]}/>
 	</div>
 	<div>
-		{#if available_streams.length>0}
+	{#if available_streams.length>0}
 		<div class="{party?'OutputWrapperParty':'OutputWrapper'}" style="--c1:{partyUIColors['color1']}; --c2:{partyUIColors['color2']}; --c3:{partyUIColors['color3']}">
 			<ul>
 			{#each available_streams as user (user)}
-				<p class='Stream' on:click={()=>{channels=[...channels,user]; available_streams=available_streams.filter(c => c!= user)}}>{user}</p>
+				<p class='Stream' on:click={()=>{channels=[...channels,user]; available_streams=available_streams.filter(c => c != user)}}>{ user }</p>
 			{/each}
 			</ul>
 		</div>
-		{/if}
-		<ColorPicker {...partyUIColors} on:color1={(e) => {partyUIColors['color1']=e.detail }} on:color2={ (e) => {partyUIColors['color2']=e.detail }} on:color3={(e) => {partyUIColors['color3']=e.detail }}/>
-		<ColorPicker {...partyScreenColors} on:color1={(e) => {partyScreenColors['color1']=e.detail} } on:color2={ (e) => {partyScreenColors['color2']=e.detail} } on:color3={ (e) => {partyScreenColors['color3']=e.detail} }/>
+	{/if}
+	{#if party}
+		<ColorPicker {...partyUIColors} name={"ui"} on:color1={(e) => {partyUIColors['color1']=e.detail }} on:color2={ (e) => {partyUIColors['color2']=e.detail }} on:color3={(e) => {partyUIColors['color3']=e.detail }}/>
+		<ColorPicker {...partyScreenColors} name={"screens"} on:color1={(e) => {partyScreenColors['color1']=e.detail} } on:color2={ (e) => {partyScreenColors['color2']=e.detail} } on:color3={ (e) => {partyScreenColors['color3']=e.detail} }/>
+	{/if}
 	</div>
 </div>
+{#if party}
+	<Tooltip text={"toggle switch to see your changes!"}/>
+{/if}
 	<!--InputBar on:add={ (e) => sites = [...sites, e.detail]}/-->
 	<div style="display:flex; flex-flow: row wrap;">
 	{#each channels as channel, i (i)}
