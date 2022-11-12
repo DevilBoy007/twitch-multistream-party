@@ -16,6 +16,7 @@ let party = false
 let partyScreenColors
 let partyUIColors
 let token = ''
+let lastGameSearch = ''
 let ttColor = false
 let ttParty = true
 const data = 
@@ -24,6 +25,13 @@ const data =
 	'client_id':'g4jmj1um0k0rs5b57yescjc81zv6oc',
 	'client_secret':'m24gzg5ryd7qqk3ytyj8t996a7mdwq'
 }
+const colors = 
+[
+	"orange",
+	"#cd96cd",
+	"deepskyblue",
+	"orchid"
+]
 onMount(async () => {
 	await fetch('https://id.twitch.tv/oauth2/token', {
 		method: 'POST',
@@ -62,7 +70,7 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 	}
 	.InputWrapper
 	{
-		color: orange;
+		color: #cd96cd;
 		background-color: #2A2A2A;
 		top: 1vh;
 		right:1vw;
@@ -90,7 +98,7 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 	}
 	.OutputWrapper
 	{
-		color: orange;
+		color: #cd96cd;
 		background-color: #2A2A2A;
 		max-width: 9em;
 		max-height: 20vh;
@@ -141,7 +149,7 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 	<div class='PanelWrapper'>
 		<div class="{party?'InputWrapperParty':'InputWrapper'}" style="--c1:{partyUIColors['color1']}; --c2:{partyUIColors['color2']}; --c3:{partyUIColors['color3']}">
 			<TwitchInputBar on:add = { (e) => channels = [...channels, e.detail]}/>
-			<StreamSearch token={token} on:search = { (e) => available_streams = e.detail} on:clear={(e)=>available_streams=[]}/>
+			<StreamSearch token={token} on:game = { (e) => lastGameSearch = e.detail } on:search = { (e) => available_streams = e.detail} on:clear={(e)=>available_streams=[]}/>
 		</div>
 		<div>
 		{#if available_streams.length>0}
@@ -165,7 +173,7 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 	<!--InputBar on:add={ (e) => sites = [...sites, e.detail]}/-->
 	<div style="display:flex; flex-flow: row wrap;">
 	{#each channels as channel, i (i)}
-		<TwitchFeed id="item{i+1}"{channel} {party} order={i} bind:color1={partyScreenColors['color1']} bind:color2={partyScreenColors['color2']} bind:color3={partyScreenColors['color3']} on:remove = { (e) => channels = channels.filter(c => c != e.detail) }/>
+		<TwitchFeed {lastGameSearch} {channel} {party} order={i} bind:color1={partyScreenColors['color1']} bind:color2={partyScreenColors['color2']} bind:color3={partyScreenColors['color3']} on:remove = { (e) => channels = channels.filter(c => c != e.detail) }/>
 	{/each}
 	</div>
 </body>

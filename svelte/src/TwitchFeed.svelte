@@ -27,9 +27,9 @@
   border-radius: 12px;
   box-shadow: -4px 4px 12px;
   color: #FFF;
-  animation: bluePulse 2s infinite;
+  animation: partyFade 2s infinite;
 }
-@keyframes bluePulse
+@keyframes partyFade
 {
   0% {box-shadow: -8px 8px 18px;color:var(--c1, 'blue');}
   50% {box-shadow: -8px 8px 18px;color:var(--c2,'green');}
@@ -60,14 +60,18 @@ export let order
 export let color1
 export let color2
 export let color3
+export let lastGameSearch
+let game = lastGameSearch
+
 import { createEventDispatcher } from 'svelte'
 import { draggable } from '@neodrag/svelte'
 const dispatch = createEventDispatcher()
 function remove() { dispatch('remove', channel)}
+
 </script>
-<div class="component-wrapper" style="--o:{order}" use:draggable={{}}>
-	<h1 on:click={remove}>{"game"}: {channel}</h1>
+<div on:load = {()=>{game = getGameFromChannel(channel)}} class="component-wrapper" style="--o:{order}" use:draggable={{}}>
+	<h1 on:click={remove}>{game}: {channel}</h1>
 	<div class:twitch-wrapper-blue="{ party == true }" style="--c1:{color1};--c2:{color2};--c3:{color3};" >
-		<iframe src='https://player.twitch.tv/?channel={channel}&parent=localhost' title = 'stream' frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+		<iframe src='https://player.twitch.tv/?channel={channel}&parent=localhost' title = "{channel}'s stream" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
 	</div>
 </div>

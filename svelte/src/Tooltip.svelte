@@ -8,7 +8,7 @@
     {
         font-size: .9rem;
         margin-right:-1rem;
-        color: orange;
+        color: #cd96cd;
     }
     .chip
     {

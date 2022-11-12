@@ -17,7 +17,7 @@
   let params
   export let token = ''
   async	function getGameID(game) {
-		console.log(`attempting to get game ID for ${game} using access token: ${token}`)
+		//console.log(`attempting to get game ID for ${game} using access token: ${token}`)
 		params = new URLSearchParams({ name:game })
 		url = 'https://api.twitch.tv/helix/games?' + params
 		const response = await fetch(url,
@@ -56,6 +56,7 @@
   async function search(game){
     await getStreams(game)
     dispatch('search',channels)
+	dispatch('game',game)
     channels = null // reset local list for next dispatch
   }
 </script>
