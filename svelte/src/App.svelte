@@ -173,7 +173,7 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 	<!--InputBar on:add={ (e) => sites = [...sites, e.detail]}/-->
 	<div style="display:flex; flex-flow: row wrap;">
 	{#each channels as channel, i (i)}
-		<TwitchFeed {lastGameSearch} {channel} {party} order={i} bind:color1={partyScreenColors['color1']} bind:color2={partyScreenColors['color2']} bind:color3={partyScreenColors['color3']} on:remove = { (e) => channels = channels.filter(c => c != e.detail) }/>
+		<TwitchFeed {lastGameSearch} {channel} {party} order={i} text_color={colors[Math.floor(Math.random() * colors.length)]} bind:color1={partyScreenColors['color1']} bind:color2={partyScreenColors['color2']} bind:color3={partyScreenColors['color3']} on:remove = { (e) => channels = channels.filter(c => c != e.detail) }/>
 	{/each}
 	</div>
 </body>

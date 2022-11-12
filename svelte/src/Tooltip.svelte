@@ -48,16 +48,17 @@
     }
 </style>
 <script>
-    export let text = "this should be a helpful tooltip!";
-    export let state = true;
     export let text_color
+    export let state = true;
+    export let text = "this should be a helpful tooltip!";
+    let color = text_color
 </script>
 {#if state}
     <div class="chip">
         <div class="close" on:click={()=>{state=false}}>
             x
         </div>
-            <p style="--text-color:{text_color}">{text}</p>
+            <p style="--text-color:{color}">{text}</p>
         <div class="icon">
             i
         </div>

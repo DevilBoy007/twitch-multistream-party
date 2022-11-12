@@ -38,8 +38,8 @@
 h1
 {
   padding-left: 2vw;
-  color: deepskyblue;
-  text-shadow: -1px 1px 4px #0074ff;
+  color: var(--text-color,deepskyblue);
+  text-shadow: -1px 1px 4px var(--text-color,#0074ff);
   font-family: 'Bebas Neue'
 }
 h1:hover
@@ -57,11 +57,13 @@ iframe
 export let channel
 export let party
 export let order
+export let text_color
 export let color1
 export let color2
 export let color3
 export let lastGameSearch
 let game = lastGameSearch
+let color = text_color
 
 import { createEventDispatcher } from 'svelte'
 import { draggable } from '@neodrag/svelte'
@@ -69,8 +71,8 @@ const dispatch = createEventDispatcher()
 function remove() { dispatch('remove', channel)}
 
 </script>
-<div on:load = {()=>{game = getGameFromChannel(channel)}} class="component-wrapper" style="--o:{order}" use:draggable={{}}>
-	<h1 on:click={remove}>{game}: {channel}</h1>
+<div class="component-wrapper" style="--o:{order}" use:draggable={{}}>
+	<h1 style="--text-color:{color}" on:click={remove}>{game}: {channel}</h1>
 	<div class:twitch-wrapper-blue="{ party == true }" style="--c1:{color1};--c2:{color2};--c3:{color3};" >
 		<iframe src='https://player.twitch.tv/?channel={channel}&parent=localhost' title = "{channel}'s stream" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
 	</div>
