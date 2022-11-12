@@ -1,6 +1,7 @@
 <style>
     div
-    {
+    {  
+        z-index: 1;
         font: 'Gill Sans';
         margin: 1vw;
     }
@@ -8,7 +9,7 @@
     {
         font-size: .9rem;
         margin-right:-1rem;
-        color: #cd96cd;
+        color: var(--text-color, #cd96cd)
     }
     .chip
     {
@@ -47,17 +48,16 @@
     }
 </style>
 <script>
-    import { createEventDispatcher } from 'svelte'
-    const dispatch = createEventDispatcher()
     export let text = "this should be a helpful tooltip!";
     export let state = true;
+    export let text_color
 </script>
 {#if state}
     <div class="chip">
         <div class="close" on:click={()=>{state=false}}>
             x
         </div>
-            <p>{text}</p>
+            <p style="--text-color:{text_color}">{text}</p>
         <div class="icon">
             i
         </div>

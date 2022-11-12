@@ -167,8 +167,8 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 		{/if}
 		</div>
 	</div>
-	<Tooltip bind:state={ttParty} text={"Flip the switch to start the party! 🥳"}/>
-	<Tooltip bind:state={ttColor} text={"Toggle switch to see your changes!"}/>
+	<Tooltip text_color={colors[Math.floor(Math.random() * colors.length)]} bind:state={ttParty} text={"Flip the switch to start the party! 🥳"}/>
+	<Tooltip text_color={colors[Math.floor(Math.random() * colors.length)]} bind:state={ttColor} text={"Toggle switch to see your changes!"}/>
 
 	<!--InputBar on:add={ (e) => sites = [...sites, e.detail]}/-->
 	<div style="display:flex; flex-flow: row wrap;">
