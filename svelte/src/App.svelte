@@ -30,7 +30,18 @@ const colors =
 	"orange",
 	"#cd96cd",
 	"deepskyblue",
-	"orchid"
+	"orchid",
+	"#58f7cd",
+	"#82cd03",
+	"#1524ec",
+	"aqua",
+	"#fdee00",
+	"#ff91af",
+	"#fe6f5e",
+	"#0000ff",
+	"#8a2be2",
+	"#66ff00",
+	"#ff55a3"
 ]
 onMount(async () => {
 	await fetch('https://id.twitch.tv/oauth2/token', {
@@ -162,8 +173,8 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 			</div>
 		{/if}
 		{#if party}
-			<ColorPicker {...partyUIColors} name={"ui"} on:color1={(e) => {partyUIColors['color1']=e.detail; ttColor = true }} on:color2={ (e) => {partyUIColors['color2']=e.detail; ttColor = true }} on:color3={(e) => {partyUIColors['color3']=e.detail; ttColor = true }}/>
-			<ColorPicker {...partyScreenColors} name={"screens"} on:color1={(e) => {partyScreenColors['color1']=e.detail; ttColor = true} } on:color2={ (e) => {partyScreenColors['color2']=e.detail; ttColor = true} } on:color3={ (e) => {partyScreenColors['color3']=e.detail; ttColor = true} }/>
+			<ColorPicker {...partyUIColors} name={"ui"} text_color={colors[Math.floor(Math.random() * colors.length)]} on:color1={(e) => {partyUIColors['color1']=e.detail; ttColor = true }} on:color2={ (e) => {partyUIColors['color2']=e.detail; ttColor = true }} on:color3={(e) => {partyUIColors['color3']=e.detail; ttColor = true }}/>
+			<ColorPicker {...partyScreenColors} name={"screens"} text_color={colors[Math.floor(Math.random() * colors.length)]} on:color1={(e) => {partyScreenColors['color1']=e.detail; ttColor = true} } on:color2={ (e) => {partyScreenColors['color2']=e.detail; ttColor = true} } on:color3={ (e) => {partyScreenColors['color3']=e.detail; ttColor = true} }/>
 		{/if}
 		</div>
 	</div>

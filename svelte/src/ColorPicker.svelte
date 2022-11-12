@@ -25,7 +25,7 @@
   }
   div
   {
-    color: gainsboro;
+    color: var(--text-color,gainsboro);
     text-align: center;
     font:'Gill Sans';
   }
@@ -33,9 +33,9 @@
 <script>
   import { createEventDispatcher } from 'svelte'
   const dispatch = createEventDispatcher()
-	export let color1, color2, color3, name
+	export let color1, color2, color3, name, text_color
 </script>
-<div class=rounded>
+<div style="--text-color:{text_color}" class=rounded>
   {name}
 	<input type=color bind:value={color1} on:change={()=>{dispatch('color1',color1); console.log(color1)}}>
   <br>
