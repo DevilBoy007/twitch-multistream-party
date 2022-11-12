@@ -147,6 +147,10 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 	{
 		padding-left:1em;
 	}
+	ul>p
+	{
+		color:var(--text-color,#cd96cd);
+	}
 	iframe
 	{
 		margin-top: 1em;
@@ -167,7 +171,7 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 			<div class="{party?'OutputWrapperParty':'OutputWrapper'}" style="--c1:{partyUIColors['color1']}; --c2:{partyUIColors['color2']}; --c3:{partyUIColors['color3']}; --text-color:{colors[Math.floor(Math.random() * colors.length)]}">
 				<ul>
 					{#each available_streams as user (user)}
-					<p class='Stream' on:click={()=>{channels=[...channels,user]; available_streams=available_streams.filter(c => c != user)}}>{ user }</p>
+					<p style="--text-color:{colors[Math.floor(Math.random() * colors.length)]}" class='Stream' on:click={()=>{channels=[...channels,user]; available_streams=available_streams.filter(c => c != user)}}>{ user }</p>
 					{/each}
 				</ul>
 			</div>
