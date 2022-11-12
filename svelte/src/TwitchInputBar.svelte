@@ -17,7 +17,7 @@
 	import { createEventDispatcher } from 'svelte'
 	let channel = ''
 	const dispatch = createEventDispatcher()
-  function add() {
+  	function add() {
 		dispatch('add', channel)
 		channel = ''
 	}

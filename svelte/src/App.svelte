@@ -70,7 +70,7 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 	}
 	.InputWrapper
 	{
-		color: #cd96cd;
+		color: var(--text-color,#cd96cd);
 		background-color: #2A2A2A;
 		top: 1vh;
 		right:1vw;
@@ -98,7 +98,7 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 	}
 	.OutputWrapper
 	{
-		color: #cd96cd;
+		color: var(--text-color,#cd96cd);
 		background-color: #2A2A2A;
 		max-width: 9em;
 		max-height: 20vh;
@@ -147,13 +147,13 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 		<PartyButton bind:party/>
 	</div>
 	<div class='PanelWrapper'>
-		<div class="{party?'InputWrapperParty':'InputWrapper'}" style="--c1:{partyUIColors['color1']}; --c2:{partyUIColors['color2']}; --c3:{partyUIColors['color3']}">
+		<div class="{party?'InputWrapperParty':'InputWrapper'}" style="--c1:{partyUIColors['color1']}; --c2:{partyUIColors['color2']}; --c3:{partyUIColors['color3']}; --text-color:{colors[Math.floor(Math.random() * colors.length)]}">
 			<TwitchInputBar on:add = { (e) => channels = [...channels, e.detail]}/>
 			<StreamSearch token={token} on:game = { (e) => lastGameSearch = e.detail } on:search = { (e) => available_streams = e.detail} on:clear={(e)=>available_streams=[]}/>
 		</div>
 		<div>
 		{#if available_streams.length>0}
-			<div class="{party?'OutputWrapperParty':'OutputWrapper'}" style="--c1:{partyUIColors['color1']}; --c2:{partyUIColors['color2']}; --c3:{partyUIColors['color3']}">
+			<div class="{party?'OutputWrapperParty':'OutputWrapper'}" style="--c1:{partyUIColors['color1']}; --c2:{partyUIColors['color2']}; --c3:{partyUIColors['color3']}; --text-color:{colors[Math.floor(Math.random() * colors.length)]}">
 				<ul>
 					{#each available_streams as user (user)}
 					<p class='Stream' on:click={()=>{channels=[...channels,user]; available_streams=available_streams.filter(c => c != user)}}>{ user }</p>
