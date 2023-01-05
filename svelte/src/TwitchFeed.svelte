@@ -74,6 +74,6 @@ function remove() { dispatch('remove', channel)}
 <div class="component-wrapper" style="--o:{order}" use:draggable={{}}>
 	<h1 style="--text-color:{color}" on:click={remove}>{game}: {channel}</h1>
 	<div class:twitch-wrapper-blue="{ party == true }" style="--c1:{color1};--c2:{color2};--c3:{color3};" >
-		<iframe src='https://player.twitch.tv/?channel={channel}&parent=master--glistening-sunburst-becd00.netlify.app' title = "{channel}'s stream" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+		<iframe src='https://player.twitch.tv/?channel={channel}&parent=master--glistening-sunburst-becd00.netlify.app&parent=sniperstreams.app&parent=www.sniperstreams.app' title = "{channel}'s stream" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
 	</div>
 </div>
