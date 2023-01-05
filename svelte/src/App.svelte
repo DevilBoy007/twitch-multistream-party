@@ -157,7 +157,7 @@ partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 		float: right;
 	}
 </style>
-<body style="font:'Gill Sans';font-size: 18px; background-color:#272727;justify-content: space-evenly; overflow: auto; height:100%">
+<body style="padding:0;font:'Gill Sans';font-size: 18px; background-color:#272727;justify-content: space-evenly; overflow: auto; height:100%">
 	<div style="display:flex"> <!--this is a flexbox for future button add-ons-->
 		<PartyButton bind:party/>
 	</div>
