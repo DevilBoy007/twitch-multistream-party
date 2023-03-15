@@ -62,6 +62,9 @@ partyScreenColors = {color1:'#00bfff', color2:'#008000', color3:'#da70d6'}
 partyUIColors = {color1: '#da70d6', color2: '#FFA500', color3: '#00bfff'}
 </script>
 <style>
+	::-webkit-scrollbar {
+  display: none;
+}
 	:global(body)
 	{
 		padding:0
